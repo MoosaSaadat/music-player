@@ -1,1 +1,76 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgb(62, 30, 242);
+	background: linear-gradient(
+		315deg,
+		rgba(62, 30, 242, 1) 0%,
+		rgba(174, 128, 214, 1) 100%
+	);
+}
+.main-wrapper {
+	background-color: #1f1f1f;
+	color: white;
+	height: 90vh;
+	width: 80vw;
+	margin: auto;
+	border-radius: 1rem;
+	display: flex;
+	flex-flow: column wrap;
+}
 
+.header {
+	display: flex;
+	box-sizing: border-box;
+	justify-content: space-between;
+	padding: 1.5rem;
+}
+
+.song-wrapper {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.song-thumb-wrapper {
+	border: 10px solid #ae80d6;
+	border-radius: 50%;
+}
+
+.song-thumb {
+	width: 150px;
+	height: 150px;
+	margin: 0.5rem;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.song-info {
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.song-info-title {
+	display: inline-block;
+	margin-bottom: 5px;
+	color: rgba(174, 128, 214, 1);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 16px;
+}
+
+.song-info-artist,
+.song-info-genre {
+	color: #f0f0f0;
+	font-size: 14px;
+}
+
+.song-info-genre {
+	color: #8f8f8f;
+}
