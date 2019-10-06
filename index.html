@@ -30,13 +30,13 @@
     </div>
     <div class="player-wrapper">
       <i class="fas fa-circle-notch"></i>
-      <i class="fas fa-caret-left player-move-btn"></i>
-      <i class="fas fa-pause-circle player-state-btn"></i>
-      <i class="fas fa-caret-right player-move-btn"></i>
+      <i class="fas fa-caret-left player-move-btn" onclick="prevSong()"></i>
+      <i class="fas fa-play-circle player-state-btn" onclick="toggleState()"></i>
+      <i class="fas fa-caret-right player-move-btn" onclick="nextSong()"></i>
       <i class="fas fa-random"></i>
     </div>
     <div class="volume-wrapper">
-      <i class="fas fa-volume-off"></i>
+      <i class="fas fa-volume-off" style="text-align: right"></i>
       <div class="volume-bar">
         <div class="main"></div>
         <div class="current"></div>
@@ -44,5 +44,87 @@
       <i class="fas fa-volume-up"></i>
     </div>
   </div>
+  <script>
+    var songsList = [
+      {
+        "title": "Alone",
+        "artist": "Marshmellow",
+        "album": "Alone (The Remixes), 2016",
+        "link": "http://dl.tak3da.ir/download/1395/03/Marshmello%20-%20Alone%20[320].mp3",
+        "thumb": "img.jpg"
+      },
+      {
+        "title": "Señorita",
+        "artist": "Shawn Mendes, Camila Cabello",
+        "album": "Shawn Mendes, 2018",
+        "link": "http://mysound.ge/uploads/tracks/2135911823_315158852_1994375449.mp3",
+        "thumb": "https://a10.gaanacdn.com/images/albums/72/2657072/crop_175x175_2657072.jpg"
+      },
+      {
+        "title": "Wake Me Up",
+        "artist": "Avicii",
+        "album": "True, 2013",
+        "link": "http://mysound.ge/uploads/tracks/1932929623_1281390459_1755572096.mp3",
+        "thumb": "https://i1.sndcdn.com/artworks-000143888529-4mwefu-t500x500.jpg"
+      },
+      {
+        "title": "New Rules",
+        "artist": "Dua Lipa",
+        "album": "Dua Lipa, 2017",
+        "link": "http://mysound.ge/uploads/tracks/729760672_1526780201_1460816669.mp3",
+        "thumb": "https://a10.gaanacdn.com/images/albums/47/1908547/crop_175x175_1908547.jpg"
+      },
+    ];
+
+    var currIndex = -1;
+    var isPlaying = false;
+    var currSong = new Audio();
+
+    var songThumb = document.querySelector(".song-thumb");
+    var songTitle = document.querySelector(".song-info-title");
+    var songArtist = document.querySelector(".song-info-artist");
+    var songAlbum = document.querySelector(".song-info-album");
+
+    var stateButton = document.querySelector(".player-state-btn");
+    var songProgressBar = document.querySelector(".song-progress-value");
+
+    console.log(songTitle.innerHTML);
+
+    function changeSong() {
+      songTitle.innerHTML = songsList[currIndex]["title"];
+      songArtist.innerHTML = songsList[currIndex]["artist"];
+      songAlbum.innerHTML = songsList[currIndex]["album"];
+      songThumb.style.backgroundImage = `url(${songsList[currIndex]["thumb"]})`;
+      currSong.src = songsList[currIndex]["link"];
+
+      if (isPlaying) toggleState();
+    }
+    function nextSong() {
+      currIndex++;
+      if (currIndex >= songsList.length) currIndex = 0;
+      changeSong();
+    }
+    function prevSong() {
+      currIndex--;
+      if (currIndex < 0) currIndex = songsList.length - 1;
+      changeSong();
+    }
+    function toggleState() {
+      if (isPlaying) {
+        currSong.pause();
+        stateButton.classList = "fas fa-play-circle player-state-btn";
+      }
+      else {
+        currSong.play();
+        stateButton.classList = "fas fa-pause-circle player-state-btn";
+      }
+      isPlaying = !isPlaying;
+    }
+    nextSong();
+    currSong.addEventListener('timeupdate', () => {
+      let currPosition = currSong.currentTime / currSong.duration * 600;
+      console.log(currPosition, currSong.duration);
+    })
+  </script>
 </body>
 </html>

@@ -23,6 +23,7 @@ body {
 	height: 90vh;
 	width: 80vw;
 	max-width: 300px;
+	max-height: 500px;
 	margin: auto;
 	border-radius: 1rem;
 	display: flex;
