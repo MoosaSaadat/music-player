@@ -17,6 +17,7 @@ body {
 	);
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
+
 .main-wrapper {
 	background-color: #1f1f1f;
 	color: white;
@@ -37,6 +38,10 @@ body {
 	justify-content: space-between;
 	margin: 1.5rem;
 	color: #f0f0f0;
+}
+
+.header > i {
+	cursor: pointer;
 }
 
 .song-wrapper {
@@ -128,6 +133,7 @@ body {
 
 .volume-wrapper > i {
 	width: 20px;
+	cursor: pointer;
 }
 
 .volume-bar {
@@ -135,32 +141,33 @@ body {
 	position: relative;
 }
 
-.volume-bar .main {
+.volume-bar #volume-slider {
+	-webkit-appearance: none;
+	outline: none;
+	margin: 0;
 	width: 100%;
 	height: 5px;
 	border-radius: 10px;
 	background-color: #4d3f61;
 }
 
-.volume-bar .current {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 5px;
-	width: 50%;
-	border-radius: 10px;
-	background-color: #ae80d6;
-}
-
-.volume-bar .current::after {
-	content: "";
-	display: inline-block;
+.volume-bar #volume-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
 	width: 9px;
 	height: 9px;
 	border-radius: 50%;
 	background-color: #ae80d6;
 	box-shadow: 0 0 3px #1f1f1f;
+	cursor: pointer;
+}
+
+.volume-bar .volume-trail {
 	position: absolute;
-	left: 100%;
-	top: -2px;
+	top: 7px;
+	left: 0;
+	width: 50%;
+	height: 5px;
+	border-radius: 10px;
+	background-color: #ae80d6;
+	transition: width linear 0.1s;
 }

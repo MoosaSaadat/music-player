@@ -36,12 +36,12 @@
       <i class="fas fa-random"></i>
     </div>
     <div class="volume-wrapper">
-      <i class="fas fa-volume-off" style="text-align: right"></i>
+      <i class="fas fa-volume-off" style="text-align: right" onclick="adjustVolume(0)"></i>
       <div class="volume-bar">
-        <div class="main"></div>
-        <div class="current"></div>
+        <input type="range" name="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="0.5" onchange="adjustVolume(event.target.value)">
+        <div class="volume-trail"></div>
       </div>
-      <i class="fas fa-volume-up"></i>
+      <i class="fas fa-volume-up" onclick="adjustVolume(1)"></i>
     </div>
   </div>
   <script>
@@ -87,6 +87,8 @@
 
     var stateButton = document.querySelector(".player-state-btn");
     var songProgressBar = document.querySelector(".song-progress-value");
+    var volumeSlider = document.querySelector("#volume-slider");
+    var volumeTrail = document.querySelector(".volume-trail");
 
     function changeSong() {
       songTitle.innerHTML = songsList[currIndex]["title"];
@@ -117,6 +119,11 @@
         stateButton.classList = "fas fa-pause-circle player-state-btn";
       }
       isPlaying = !isPlaying;
+    }
+    function adjustVolume(currVol) {
+      currSong.volume = currVol;
+      volumeTrail.style.width = `${currVol * 100}%`;
+      volumeSlider.value = currVol;
     }
     nextSong();
     currSong.addEventListener('timeupdate', () => {
