@@ -18,7 +18,7 @@
       <div class="song-thumb-wrapper">
         <svg class="song-progress" width="200" height="200" viewBox="0 0 200 200">
           <circle class="song-progress-meter" cx="100" cy="100" r="90" stroke="#4d3f61" stroke-width="10" fill="none" />
-          <circle class="song-progress-value" cx="100" cy="100" r="90" stroke="#ae80d6" stroke-width="10" fill="none" stroke-dasharray="350 300" stroke-linecap="round" />
+          <circle class="song-progress-value" cx="100" cy="100" r="90" stroke="#ae80d6" stroke-width="10" fill="none" stroke-dasharray="0 600" stroke-linecap="round" />
         </svg>
         <div class="song-thumb"></div>
       </div>
@@ -88,8 +88,6 @@
     var stateButton = document.querySelector(".player-state-btn");
     var songProgressBar = document.querySelector(".song-progress-value");
 
-    console.log(songTitle.innerHTML);
-
     function changeSong() {
       songTitle.innerHTML = songsList[currIndex]["title"];
       songArtist.innerHTML = songsList[currIndex]["artist"];
@@ -123,8 +121,11 @@
     nextSong();
     currSong.addEventListener('timeupdate', () => {
       let currPosition = currSong.currentTime / currSong.duration * 600;
-      console.log(currPosition, currSong.duration);
-    })
+      if (!isNaN(currPosition))
+        songProgressBar.setAttribute("stroke-dasharray", `${currPosition} ${600-currPosition}`);
+      else
+        songProgressBar.setAttribute("stroke-dasharray", "0 600");
+    });
   </script>
 </body>
 </html>
