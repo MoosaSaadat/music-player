@@ -124,7 +124,8 @@
     }
     function adjustVolume(currVol) {
       currSong.volume = currVol;
-      if (currVol !== "0")
+      console.log(currVol, currVol !== "0", currVol !== 0);
+      if (currVol !== "0" && currVol !== 0)
         volumeTrail.style.width = `${currVol * 100 - 2}%`;
       else
         volumeTrail.style.width = "0%";
