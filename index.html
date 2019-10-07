@@ -125,7 +125,7 @@
     function adjustVolume(currVol) {
       currSong.volume = currVol;
       if (currVol !== "0")
-        volumeTrail.style.width = `${currVol * 100 - 3}%`;
+        volumeTrail.style.width = `${currVol * 100 - 2}%`;
       else
         volumeTrail.style.width = "0%";
       volumeSlider.value = currVol;
