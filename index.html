@@ -76,7 +76,7 @@
       },
     ];
 
-    var currIndex = -1;
+    var currIndex = 0;
     var isPlaying = false;
     var currSong = new Audio();
 
@@ -91,13 +91,15 @@
     var volumeTrail = document.querySelector(".volume-trail");
 
     function changeSong() {
+      let currentStatus = isPlaying;
+      if (currentStatus) toggleState();
       songTitle.innerHTML = songsList[currIndex]["title"];
       songArtist.innerHTML = songsList[currIndex]["artist"];
       songAlbum.innerHTML = songsList[currIndex]["album"];
       songThumb.style.backgroundImage = `url(${songsList[currIndex]["thumb"]})`;
       currSong.src = songsList[currIndex]["link"];
 
-      if (isPlaying) toggleState();
+      if (currentStatus) toggleState();
     }
     function nextSong() {
       currIndex++;
@@ -122,10 +124,13 @@
     }
     function adjustVolume(currVol) {
       currSong.volume = currVol;
-      volumeTrail.style.width = `${currVol * 100}%`;
+      if (currVol !== "0")
+        volumeTrail.style.width = `${currVol * 100 - 3}%`;
+      else
+        volumeTrail.style.width = "0%";
       volumeSlider.value = currVol;
     }
-    nextSong();
+    // nextSong();
     currSong.addEventListener('timeupdate', () => {
       let currPosition = currSong.currentTime / currSong.duration * 600;
       if (!isNaN(currPosition))

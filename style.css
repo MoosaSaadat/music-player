@@ -154,12 +154,12 @@ body {
 }
 
 .volume-bar #volume-slider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	width: 9px;
-	height: 9px;
+	/* -webkit-appearance: none;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
 	background-color: #ae80d6;
-	box-shadow: 0 0 3px #1f1f1f;
+	box-shadow: 0 0 3px #1f1f1f; */
 	cursor: pointer;
 }
 
@@ -167,7 +167,7 @@ body {
 	position: absolute;
 	top: 7px;
 	left: 0;
-	width: 50%;
+	width: 47%;
 	height: 5px;
 	border-radius: 10px;
 	background-color: #ae80d6;
