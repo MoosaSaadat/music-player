@@ -78,7 +78,7 @@
 
     var currIndex = 0;
     var isPlaying = false;
-    var currSong = new Audio();
+    var currSong = new Audio(songsList[currIndex]["link"]);
 
     var songThumb = document.querySelector(".song-thumb");
     var songTitle = document.querySelector(".song-info-title");
