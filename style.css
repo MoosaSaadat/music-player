@@ -126,6 +126,10 @@ body {
 	color: #ae80d6;
 }
 
+.player-load-btn {
+	animation: spin 2s linear infinite;
+}
+
 .volume-wrapper {
 	display: flex;
 	justify-content: space-evenly;
@@ -172,4 +176,9 @@ body {
 	border-radius: 10px;
 	background-color: #ae80d6;
 	transition: width linear 0.1s;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }

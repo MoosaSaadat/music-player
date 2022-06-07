@@ -90,6 +90,8 @@
     var volumeSlider = document.querySelector("#volume-slider");
     var volumeTrail = document.querySelector(".volume-trail");
 
+    stateButton.classList = "fas fa-spinner player-state-btn player-load-btn";
+
     function changeSong() {
       let currentStatus = isPlaying;
       if (currentStatus) toggleState();
@@ -139,6 +141,9 @@
       else
         songProgressBar.setAttribute("stroke-dasharray", "0 600");
     });
+    currSong.addEventListener("canplaythrough", event => {
+      stateButton.classList = "fas fa-play-circle player-state-btn";
+    });  
   </script>
 </body>
 </html>
